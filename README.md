@@ -103,7 +103,7 @@ plt.axis('off')
 plt.title('Word Cloud of Most Common Words')
 plt.show()
 ```
-##Bag of Words Matrix
+## Bag of Words Matrix
 Create a Bag of Words matrix for the training data to represent word frequencies in a structured format.
 ```python
 import pandas as pd
@@ -123,7 +123,7 @@ for text in texts:
 word_frequencies_df = pd.DataFrame(word_frequencies)
 word_frequencies_df.to_csv('word_frequencies_train.csv', index=False)
 ```
-##Dimensionality Reduction
+## Dimensionality Reduction
 Perform Singular Value Decomposition (SVD) and Truncated SVD to reduce the dimensionality of the word frequencies matrix and analyze the reconstruction error.
 ```python
 import numpy as np
@@ -142,7 +142,7 @@ reconstruction_error = mean_squared_error(standardized_matrix, matrix_reconstruc
 
 print("Reconstruction error (MSE):", reconstruction_error)
 ```
-##Similarity Analysis
+## Similarity Analysis
 Calculate the cosine similarity and Euclidean distance between word vectors to analyze the relationship between different words.
 ```python
 from sklearn.metrics.pairwise import cosine_similarity
@@ -161,7 +161,7 @@ euclidean_dist = euclidean(vector1, vector2)
 print(f"Cosine Similarity between '{word1}' and '{word2}':", cos_sim)
 print(f"Euclidean Distance between '{word1}' and '{word2}':", euclidean_dist)
 ```
-##Usage
+## Usage
 1.Data Preprocessing: Run preprocess.py to clean the dataset.
 2.Data Visualization: Run visualize.py to create bar charts and word clouds.
 3.Bag of Words Matrix: Run bag_of_words.py to generate the word frequencies matrix.
