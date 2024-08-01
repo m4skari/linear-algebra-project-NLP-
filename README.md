@@ -167,3 +167,7 @@ print(f"Euclidean Distance between '{word1}' and '{word2}':", euclidean_dist)
 3.Bag of Words Matrix: Run bag_of_words.py to generate the word frequencies matrix.
 4.Dimensionality Reduction: Run svd.py to perform SVD and analyze reconstruction errors.
 5.Similarity Analysis: Run similarity.py to compute similarities between word vectors.
+
+## Result
+The project outputs cleaned data, visualizations of word frequencies, Bag of Words matrices, dimensionality-reduced representations, and similarity metrics for word analysis.
+
