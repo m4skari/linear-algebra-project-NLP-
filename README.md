@@ -16,13 +16,21 @@ This project performs various Natural Language Processing (NLP) tasks, including
 
 ## Project Structure
 ├── dataset.csv
+
 ├── cleaned_dataset.csv
+
 ├── top_30_words.csv
+
 ├── train_dataset.csv
+
 ├── test_dataset.csv
+
 ├── word_frequencies_train.csv
+
 ├── words.csv
+
 ├── README.md
+
 └── src
 
 └── script.py
