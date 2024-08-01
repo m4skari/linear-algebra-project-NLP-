@@ -103,3 +103,67 @@ plt.axis('off')
 plt.title('Word Cloud of Most Common Words')
 plt.show()
 ```
+##Bag of Words Matrix
+Create a Bag of Words matrix for the training data to represent word frequencies in a structured format.
+```python
+import pandas as pd
+from collections import Counter
+
+train_df = pd.read_csv('train_dataset.csv')
+words_data = pd.read_csv('words.csv')
+texts = train_df['Text'].tolist()
+words = words_data['Words'].tolist()
+
+word_frequencies = []
+for text in texts:
+    word_counts = Counter(text.split())
+    freq_dict = {word: word_counts.get(word, 0) for word in words}
+    word_frequencies.append(freq_dict)
+
+word_frequencies_df = pd.DataFrame(word_frequencies)
+word_frequencies_df.to_csv('word_frequencies_train.csv', index=False)
+```
+##Dimensionality Reduction
+Perform Singular Value Decomposition (SVD) and Truncated SVD to reduce the dimensionality of the word frequencies matrix and analyze the reconstruction error.
+```python
+import numpy as np
+from sklearn.decomposition import TruncatedSVD
+from sklearn.metrics import mean_squared_error
+
+mean = np.mean(word_frequencies_df, axis=0)
+std_dev = np.std(word_frequencies_df, axis=0)
+standardized_matrix = (word_frequencies_df - mean) / std_dev
+
+U, S, VT = np.linalg.svd(standardized_matrix, full_matrices=False)
+svd = TruncatedSVD(n_components=10)
+matrix_reduced = svd.fit_transform(standardized_matrix)
+matrix_reconstructed = svd.inverse_transform(matrix_reduced)
+reconstruction_error = mean_squared_error(standardized_matrix, matrix_reconstructed)
+
+print("Reconstruction error (MSE):", reconstruction_error)
+```
+##Similarity Analysis
+Calculate the cosine similarity and Euclidean distance between word vectors to analyze the relationship between different words.
+```python
+from sklearn.metrics.pairwise import cosine_similarity
+from scipy.spatial.distance import euclidean
+
+words_df = pd.read_csv('words.csv')
+words = words_df['Words'].values
+
+word1, word2 = 'mobile', 'technology'
+idx1, idx2 = np.where(words == word1)[0][0], np.where(words == word2)[0][0]
+vector1, vector2 = VT[:, idx1], VT[:, idx2]
+
+cos_sim = cosine_similarity([vector1], [vector2])[0][0]
+euclidean_dist = euclidean(vector1, vector2)
+
+print(f"Cosine Similarity between '{word1}' and '{word2}':", cos_sim)
+print(f"Euclidean Distance between '{word1}' and '{word2}':", euclidean_dist)
+```
+##Usage
+1.Data Preprocessing: Run preprocess.py to clean the dataset.
+2.Data Visualization: Run visualize.py to create bar charts and word clouds.
+3.Bag of Words Matrix: Run bag_of_words.py to generate the word frequencies matrix.
+4.Dimensionality Reduction: Run svd.py to perform SVD and analyze reconstruction errors.
+5.Similarity Analysis: Run similarity.py to compute similarities between word vectors.
