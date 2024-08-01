@@ -39,16 +39,11 @@ This project performs various Natural Language Processing (NLP) tasks, including
 
 ## Setup and Installation
 
-1. Clone the repository:
+ Clone the repository:
     ```sh
-    git clone https://github.com/yourusername/nlp-project.git
-    cd nlp-project
-    ```
-
-2. Install the required packages:
-    ```sh
-    pip install -r requirements.txt
-    ```
+    git clone https://github.com/m4skari/linear-algebra-project-NLP.git
+    cd linear-algebra-project-NLP
+    `````
 
 ## Data Preprocessing
 
