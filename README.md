@@ -67,7 +67,7 @@ df.to_csv('cleaned_dataset.csv', index=False)
 ```
 ## Data visualization
 Visualize the frequency of the top 30 most common words in the dataset using bar charts and word clouds.
-
+```python
 import pandas as pd
 from collections import Counter
 import re
