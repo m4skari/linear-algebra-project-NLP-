@@ -1,21 +1,18 @@
+# NLP Project
+
 This project performs various Natural Language Processing (NLP) tasks, including data preprocessing, visualization, dimensionality reduction, and similarity analysis using a dataset of text data.
 
-Project Structure:
+## Table of Contents
 
-├── dataset.csv
-├── cleaned_dataset.csv
-├── top_30_words.csv
-├── train_dataset.csv
-├── test_dataset.csv
-├── word_frequencies_train.csv
-├── words.csv
-├── README.md
-└── src
-    ├── script.py
-    
+1. [Project Structure](#project-structure)
+2. [Setup and Installation](#setup-and-installation)
+3. [Data Preprocessing](#data-preprocessing)
+4. [Data Visualization](#data-visualization)
+5. [Bag of Words Matrix](#bag-of-words-matrix)
+6. [Dimensionality Reduction](#dimensionality-reduction)
+7. [Similarity Analysis](#similarity-analysis)
+8. [Usage](#usage)
+9. [Results](#results)
 
-Setup and Installation
-
-git clone https://github.com/m4skari/linear-algebra-project-NLP.git
-cd linear-algebra-project-NLP
+## Project Structure
 
