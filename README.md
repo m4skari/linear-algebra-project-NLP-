@@ -64,3 +64,42 @@ def clean_and_lower(text):
 df = df.applymap(clean_and_lower)
 df.dropna(inplace=True)
 df.to_csv('cleaned_dataset.csv', index=False)
+```
+## Data visualization
+Visualize the frequency of the top 30 most common words in the dataset using bar charts and word clouds.
+
+import pandas as pd
+from collections import Counter
+import re
+import matplotlib.pyplot as plt
+from wordcloud import WordCloud
+
+df = pd.read_csv('cleaned_dataset.csv')
+
+def count_words(text):
+    words = re.findall(r'\b\w+\b', text.lower())
+    return Counter(words)
+
+combined_text = ' '.join(df.apply(lambda row: ' '.join(row.dropna().astype(str)), axis=1))
+word_counts = count_words(combined_text)
+most_common_words = word_counts.most_common(30)
+
+df_most_common = pd.DataFrame(most_common_words, columns=['Word', 'Frequency'])
+df_most_common.to_csv('top_30_words.csv', index=False)
+
+plt.figure(figsize=(12, 8))
+plt.bar(df_most_common['Word'], df_most_common['Frequency'], color='skyblue')
+plt.xlabel('Words')
+plt.ylabel('Frequency')
+plt.title('Top 30 Most Common Words')
+plt.xticks(rotation=45, ha='right')
+plt.tight_layout()
+plt.show()
+
+wordcloud = WordCloud(width=800, height=400, background_color='white').generate_from_frequencies(word_counts)
+plt.figure(figsize=(10, 8))
+plt.imshow(wordcloud, interpolation='bilinear')
+plt.axis('off')
+plt.title('Word Cloud of Most Common Words')
+plt.show()
+```
