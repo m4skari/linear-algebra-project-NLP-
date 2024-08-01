@@ -24,8 +24,40 @@ This project performs various Natural Language Processing (NLP) tasks, including
 ├── words.csv
 ├── README.md
 └── src
-├── preprocess.py
-├── visualize.py
-├── bag_of_words.py
-├── svd.py
-└── similarity.py
+
+└── script.py
+
+
+
+## Setup and Installation
+
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/yourusername/nlp-project.git
+    cd nlp-project
+    ```
+
+2. Install the required packages:
+    ```sh
+    pip install -r requirements.txt
+    ```
+
+## Data Preprocessing
+
+The preprocessing step involves cleaning the dataset by removing non-alphanumeric characters, converting text to lowercase, and dropping any missing values.
+
+```python
+import pandas as pd
+import re
+
+df = pd.read_csv('dataset.csv')
+
+def clean_and_lower(text):
+    if isinstance(text, str):
+        cleaned_text = re.sub(r'[^a-zA-Z0-9\s]', '', text.lower())
+        return cleaned_text.strip()
+    return text
+
+df = df.applymap(clean_and_lower)
+df.dropna(inplace=True)
+df.to_csv('cleaned_dataset.csv', index=False)
